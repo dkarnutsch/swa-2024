@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dani-demo-app
+  labels:
+    app: dani-demo-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: dani-demo-app
+  template:
+    metadata:
+      labels:
+        app: dani-demo-app
+    spec:
+      containers:
+      - name: dani-demo-app
+        image: dkarnutsch/swa-demo-app:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000

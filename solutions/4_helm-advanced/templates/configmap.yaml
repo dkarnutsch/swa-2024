@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "dani-demo-app.fullname" . }}
+  labels: {{ - include "dani-demo-app.labels" . | nindent 4 }}
+data:
+  APP_USERNAME: daniel

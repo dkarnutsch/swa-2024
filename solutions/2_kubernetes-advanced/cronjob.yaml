@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: dani-demo-app
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: dani-demo-app
+            image: dkarnutsch/swa-demo-app:latest
+            command:
+            - node
+            - dist/console.js
+            - demo-command
+          restartPolicy: OnFailure

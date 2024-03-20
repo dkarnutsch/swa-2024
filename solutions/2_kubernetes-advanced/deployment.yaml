@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dani-demo-app
+  labels:
+    app: dani-demo-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dani-demo-app
+  template:
+    metadata:
+      labels:
+        app: dani-demo-app
+    spec:
+      containers:
+      - name: dani-demo-app
+        image: dkarnutsch/swa-demo-app:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "10m"
+          limits:
+            memory: "64Mi"
+            cpu: "1"
+        livenessProbe:
+          httpGet:
+            path: /status
+            port: 3000
+          initialDelaySeconds: 3
+          periodSeconds: 3
+        readinessProbe:
+          httpGet:
+            path: /status
+            port: 3000
+          initialDelaySeconds: 3
+          periodSeconds: 3
+        envFrom:
+        - configMapRef:
+            name: dani-demo-app
+        - secretRef:
+            name: dani-demo-app

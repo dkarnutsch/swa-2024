@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dani-demo-app-ext
+spec:
+  type: LoadBalancer
+  selector:
+    app: dani-demo-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000

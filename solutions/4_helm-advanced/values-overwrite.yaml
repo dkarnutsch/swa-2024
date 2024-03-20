@@ -1,0 +1,10 @@
+image:
+  repository: dkarnutsch/swa-demo-app
+  tag: latest
+
+serviceAccount:
+  create: false
+
+service:
+  type: LoadBalancer
+  port: 3000
